@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang= "pl" xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout::head">
+</head>
+<body>
+<div th:include="layout::navigationPanel"></div>
+<h1>Logowanie:</h1>
+<form th:action="@{/login}" method="POST">
+    <div class="form-group">
+        <label for="login">Login</label>
+        <input type="text" id="login" style="height: 30px" name="login" placeholder="Login"/>
+    </div>
+    <div class="form-group">
+        <label for="passwd">Hasło</label>
+        <input type="password" id="passwd" style="height: 30px" name="passwd" placeholder="Hasło"/>
+    </div>
+    <div th:if="${param.error}">
+        <span class="error">Niepoprawne dane użytkownika</span>
+    </div>
+        <button class="btn btn-primary" type="submit">Zaloguj się</button>
+</form>
+<div th:include="layout::footer"></div>
+</body>
+</html>

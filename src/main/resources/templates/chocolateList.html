@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout::head"> </head>
+<title>Lista czekolad</title>
+<body>
+<div th:include="layout :: navigationPanel"></div>
+<h1>Lista dostępnych czekolad:</h1>
+<div th:if="${#lists.isEmpty(chocolateList)}">
+    Brak czekolad...
+</div>
+
+<table class="d-flex justify-content-center" th:if="${!#lists.isEmpty(chocolateList)}" id="table_detail">
+    <tr> <th>Nazwa</th> <th>Rodzaj</th> <th>Cena</th>
+        <th>Dostępne sztuki</th>
+        <th>Usuń</th> <th>Edytuj</th>
+    </tr>
+    </tr>
+    <tr th:each="chocolate:${chocolateList}">
+        <td th:text="${chocolate.getName()}"></td>
+        <td th:text="${chocolate.getType()}"></td>
+        <td th:text="${chocolate.getPrice()}"></td>
+        <td th:text="${chocolate.getStock()}"></td>
+        
+        <td>
+            <form th:action="@{/chocolate/delete}"  method="POST" th:object="${chocolate}">
+                <input type="hidden"  th:value="${chocolate.getId()}" name="id"/>
+                <button type="submit" class="delete ">Usuń</button>
+            </form>
+        </td>
+        <td>
+            <form th:action="@{/chocolate/edit}"  method="GET" th:object="${chocolate}">
+                <input type="hidden"  th:value="${chocolate.getId()}" th:attr="name='id'"/>
+                <input type="hidden" th:value="${chocolate.getName()}" name="name"/>
+                <input type="hidden" th:value="${chocolate.getType()}" name="type"/>
+                <input type="hidden" th:value="${chocolate.getPrice()}" name="price"/>
+                <input type="hidden" th:value="${chocolate.getStock()}" name="stock"/>
+                <button type="submit" class="edit">Edytuj</button>
+            </form>
+        </td>
+    </tr>
+
+</table>
+<div th:include="layout::footer"></div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: head">
+</head>
+<body>
+<div th:include="layout :: navigationPanel"></div>
+<h1>Dodaj czekolade</h1>
+<form th:action="@{/chocolate/add}" method="POST" th:object="${chocolate}" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="name">Nazwa</label>
+        <input id="name" type="text" style="height: 30px" th:field="*{name}" placeholder="Nazwa" th:errorClass="error" />
+        <small class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
+    </div>
+    <div class="form-group">
+        <label for="price">Cena</label>
+        <input type="text" id="price" style="height: 30px" th:field="*{price}" step="0.01" placeholder="Cena" th:errorClass="error" />
+        <small class="error" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></small>
+    </div>
+    <div class="form-group">
+        <label for="stock">Liczba sztuk</label>
+        <input type="text" id="stock" style="height: 30px" th:field="*{stock}" step="0.01" placeholder="Liczba sztuk" th:errorClass="error" />
+        <small class="error" th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}"></small>
+    </div>
+    <div class="form-group">
+        <label for="type">Rodzaj</label>
+        <input type="text" id="type" style="height: 30px" th:field="*{type}" step="0.01" placeholder="Rodzaj" th:errorClass="error" />
+        <small class="error" th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></small>
+    </div>
+    
+    <button type="submit">Dodaj czekolade</button>
+
+</form>
+
+<div th:include="layout :: footer"></div>
+</body>
+</html>

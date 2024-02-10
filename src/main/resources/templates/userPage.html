@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: head">
+</head>
+<body>
+<div th:include="layout :: navigationPanel"></div>
+<div style=" border: solid 1px black; ">
+    <h1 th:text="'Witaj ' +${user.name} "></h1>
+
+</div>
+<div class="mx-auto">
+    <table class="mx-auto d-flex justify-content-center">
+        <h5>Akcje użytkownika:</h5>
+        <tr><td><button><a th:href="@{/chocolate/list}">Wyświetl listę czekolad</a></button></td></tr>
+        <tr><td><button><a th:href="@{/chocolate/add}">Dodaj Czekoladę</a></button></td></tr>
+
+    </table>
+</div>
+<div th:include="layout :: footer"></div>
+</body>
+</html>

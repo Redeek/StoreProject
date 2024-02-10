@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: head">
+</head>
+<body>
+<div th:include="layout :: navigationPanel"></div>
+<h1>Edytuj Czekolade</h1>
+<form th:action="@{/chocolate/edit}" method="POST" th:object="${chocolate}" enctype="multipart/form-data">
+    <input type="hidden" th:field="*{id}" th:value="${chocolate.id}" th:attr="name='id'" />
+
+    <input type="text" style="height: 30px" th:field="*{name}" placeholder="Nazwa " th:errorClass="error" />
+    <span class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span><br />
+
+    <input type="number"  style="height: 30px" th:field="*{price}" step="0.01" placeholder="Cena" th:errorClass="error" />
+    <span class="error" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span><br />
+
+    <input type="number"  style="height: 30px" th:field="*{stock}" placeholder="Dostępne sztuki" th:errorClass="error" />
+    <span class="error" th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}"></span><br />
+
+    <input type="text" style="height: 30px" th:field="*{type}" placeholder="Rodzaj czekolady" th:errorClass="error" />
+    <span class="error" th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></span><br />
+
+
+    <button type="submit">Zatwierdź</button>
+
+</form>
+
+<div th:include="layout :: footer"></div>
+</body>
+</html>
